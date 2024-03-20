@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   comprobacion.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagonza3 <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/17 20:22:50 by dagonza3          #+#    #+#             */
+/*   Updated: 2024/02/17 20:22:54 by dagonza3         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+/*
+	0 	1	2	3
+	4	5	6	7
+	8	9	10	11
+	12	13	14	15
+*/
+void	comp_emparejamientos(int *datos, int *errores)
+{
+	int	i;
+	i = 0;
+	while (i < 4)
+	{
+		if (*(datos + i) + *(datos + 4 + i) > 5 || *(datos + i) + *(datos + 4 + i) < 3)
+			*errores = *errores + 1;
+			i = i + 1;
+	}
+	i =	8;
+	while (i < 12)
+	{
+		if (*(datos + i) + *(datos + 4 i) > 5 || *(datos + i) + *(datos + 4 + i) < 3)
+		*errores = *errores + 1;
+		i = i + 1;
+	}
+}
