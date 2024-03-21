@@ -17,7 +17,7 @@ int	main(void)
 {
 	int	result;
 
-	result = ft_isalpha('1');
+	result = ft_isalpha('2');
 	printf("True=1 | False=0 | r: %d \n", result);
 	return (0);
 }
