@@ -14,7 +14,7 @@ NAME = libft.a
 CCFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 HEADER = libft.h
-SRC = ft_isalpha.c
+SRC = ft_isalpha.c ft_isdigit.c
 
 OBJS =	$(SRC:.c=.o)
 all: $(NAME)

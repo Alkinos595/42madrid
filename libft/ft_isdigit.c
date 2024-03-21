@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afoinqui <afoinqui@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: afoinqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 14:32:46 by afoinqui          #+#    #+#             */
-/*   Updated: 2024/03/19 14:32:47 by afoinqui         ###   ########.fr       */
+/*   Created: 2024/03/21 11:43:05 by afoinqui          #+#    #+#             */
+/*   Updated: 2024/03/21 11:43:07 by afoinqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-int	main(void)
+int	ft_isdigit(int c)
 {
-	printf("True=1 | False=0 | isalpha? r: %d \n", ft_isalpha(65));
-	printf("True=1 | False=0 | isdigit? r: %d \n", ft_isdigit(57));
+	if (c >= 48 && c <= 57)
+		return (1);
 	return (0);
 }
