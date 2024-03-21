@@ -11,19 +11,18 @@
 # **************************************************************************** #
 
 NAME = libft.a
-CCFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 RM = rm -rf
-HEADER = libft.h
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c
+SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c
 OBJS =	$(SRC:.c=.o)
-
-%.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADER)
+$(NAME): $(OBJS) libft.h
 	ar rcs $(NAME) $(OBJS)
+
+%.o: %.c
+	gcc $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
@@ -34,4 +33,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re main
+.PHONY: all clean fclean re
