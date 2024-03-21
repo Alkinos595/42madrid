@@ -15,9 +15,6 @@
 
 int	main(void)
 {
-	int	result;
-
-	result = ft_isalpha('2');
-	printf("True=1 | False=0 | r: %d \n", result);
+	printf("True=1 | False=0 | isalpha? r: %d \n", ft_isalpha(65));
 	return (0);
 }
