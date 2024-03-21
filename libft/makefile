@@ -12,21 +12,26 @@
 
 NAME = libft.a
 CCFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+RM = rm -rf
 HEADER = libft.h
-SRC = ft_isalpha.c ft_isdigit.c
-
+SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c
 OBJS =	$(SRC:.c=.o)
+
+%.o: %.c
+	gcc $(CFLAGS) -c $< -o $@
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADER)
 	ar rcs $(NAME) $(OBJS)
+
 clean:
 	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) a.out
 
 re: fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY: all clean fclean re main
