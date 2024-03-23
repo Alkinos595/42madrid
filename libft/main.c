@@ -17,5 +17,8 @@ int	main(void)
 {
 	printf("True=1 | False=0 | isalpha? r: %d \n", ft_isalpha(65));
 	printf("True=1 | False=0 | isdigit? r: %d \n", ft_isdigit(57));
+	printf("True=1 | False=0 | isdigit? r: %d \n", ft_isdigit(57));
+	printf("True=1 | False=0 | isdigit? r: %d \n", ft_isdigit(57));
+	printf("True=1 | False=0 | isdigit? r: %d \n", ft_isdigit(57));
 	return (0);
 }
