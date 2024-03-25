@@ -15,10 +15,54 @@
 
 int	main(void)
 {
-	printf("Hello world!");
+	printf("Hola mundo");
 	return (0);
 }
 
+//& bzero test--------------------------------------------------------
+/*
+int	main(void)
+{
+	char	buffer[10] = "qwerty123";
+	int		numbers[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int		i = 0;
+	printf("\n");
+	printf("test bzero with char\n");
+	printf("Tamaño de buffer: %ld\n", sizeof(buffer) / sizeof(buffer[0]));
+	printf("Buffer antes: %s\n", buffer);
+	ft_bzero(buffer, 1);
+	printf("Buffer después: ");
+	while (i < sizeof(buffer) / sizeof(buffer[0]))
+	{
+		printf("%c", buffer[i]);
+		i++;
+	}
+	printf("\n------------------\n");
+	i = 0;
+	printf("test bzero with int\n");
+	printf("Tamaño de numbers: %ld\n", sizeof(numbers) / sizeof(numbers[0]));
+	printf("Numbers antes: ");
+	while (i < sizeof(numbers) / sizeof(numbers[0]))
+	{
+		printf("%d ", numbers[i]);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	ft_bzero(numbers, sizeof(numbers) / 5);
+	printf("Numbers después: ");
+	while (i < sizeof(numbers) / sizeof(numbers[0]))
+	{
+		printf("%d ", numbers[i]);
+		i++;
+	}
+
+	printf("\n\n");
+	return (0);
+}
+*/
+
+//& Prueba hasta memset--------------------------------------------------------
 /*
 int	main(void)
 {
