@@ -12,13 +12,15 @@
 
 #include <stdio.h>
 #include "libft.h"
-
+//& memcpy test--------------------------------------------------------
+/*
 int	main(void)
 {
 	int		i = 0;
-	char	string[] = "Hello";
-	int		numbers[] = {1, 2, 3, 4, 5};
+	char	string[] = "Hella";
 	char	dest1[6] = "Barco";
+	char 	*dest3;
+	int		numbers[] = {1, 2, 3, 4, 5};
 	int		dest2[5] = {0, 9, 8, 7, 6};
 	printf("Tamaño de string: %ld bytes", sizeof(string));
 	printf("\ndest1 antes: ");
@@ -27,7 +29,7 @@ int	main(void)
 		printf("%c", dest1[i]);
 		i++;
 	}
-	ft_memcpy(dest1, string, 2);
+	ft_memcpy(dest2, string, 4);
 	i = 0;
 	printf("\ndest1 después: ");
 	while (i < sizeof(dest1) / sizeof(dest1[0]))
@@ -35,26 +37,26 @@ int	main(void)
 		printf("%c", dest1[i]);
 		i++;
 	}
-	//&---------------------------------------------------------------
 	i = 0;
 	printf("\nTamaño de numbers: %ld bytes", sizeof(numbers));
 	printf("\ndest2 antes: ");
 	while (i < sizeof(dest2) / sizeof(dest2[0]))
 	{
-		printf("%d", dest2[i]);
+		printf("%d ", dest2[i]);
 		i++;
 	}
-	ft_memcpy(dest2, numbers, 5 * sizeof(int));
+	ft_memcpy(dest2, numbers, sizeof(int) * 2);
 	i = 0;
 	printf("\ndest2 después: ");
 	while (i < sizeof(dest2) / sizeof(dest2[0]))
 	{
-		printf("%d", dest2[i]);
+		printf("%d ", dest2[i]);
 		i++;
 	}
 	printf("\n");
 	return (0);
 }
+*/
 
 //& bzero test--------------------------------------------------------
 /*
