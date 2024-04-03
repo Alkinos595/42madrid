@@ -12,7 +12,19 @@
 
 #include <stdio.h>
 #include "libft.h"
+#include <string.h>
 //& memcpy test--------------------------------------------------------
+/*
+int	main(void)
+{
+	char str [] = "agua-cate";
+	printf("result1: %s\n",str);
+	//ft_memcpy(str+2, str, 3);
+	//ft_memmove(str+2, str, 4);
+	printf("result2: %s\n",str);
+	return (0);
+}
+*/
 /*
 int	main(void)
 {
@@ -29,7 +41,7 @@ int	main(void)
 		printf("%c", dest1[i]);
 		i++;
 	}
-	ft_memcpy(dest2, string, 4);
+	ft_memcpy(dest1, string, 4);
 	i = 0;
 	printf("\ndest1 después: ");
 	while (i < sizeof(dest1) / sizeof(dest1[0]))
