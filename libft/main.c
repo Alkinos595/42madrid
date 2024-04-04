@@ -13,7 +13,20 @@
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
-//& memcpy test--------------------------------------------------------
+
+int	main(void)
+{
+	char	src[] = "Hello, world!";
+	char	dst[20] = "agua";
+	size_t	len;
+
+	printf("Before: %s\n", dst);
+	len = ft_strlcpy(dst+4, src, sizeof(src));
+	printf("Length: %zu\nAfter: %s\n", len, dst);
+	return (0);
+}
+
+//& memcpy & memmove test---------------------------------------
 /*
 int	main(void)
 {
@@ -34,6 +47,7 @@ int	main(void)
 	char 	*dest3;
 	int		numbers[] = {1, 2, 3, 4, 5};
 	int		dest2[5] = {0, 9, 8, 7, 6};
+	
 	printf("Tamaño de string: %ld bytes", sizeof(string));
 	printf("\ndest1 antes: ");
 	while (i < sizeof(dest1) / sizeof(dest1[0]))
@@ -49,6 +63,7 @@ int	main(void)
 		printf("%c", dest1[i]);
 		i++;
 	}
+	
 	i = 0;
 	printf("\nTamaño de numbers: %ld bytes", sizeof(numbers));
 	printf("\ndest2 antes: ");
@@ -57,7 +72,7 @@ int	main(void)
 		printf("%d ", dest2[i]);
 		i++;
 	}
-	ft_memcpy(dest2, numbers, sizeof(int) * 2);
+	ft_memcpy(dest2, numbers, 8);
 	i = 0;
 	printf("\ndest2 después: ");
 	while (i < sizeof(dest2) / sizeof(dest2[0]))
