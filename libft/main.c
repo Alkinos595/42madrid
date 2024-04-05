@@ -19,6 +19,11 @@ int	main(void)
 	char	src[] = "Hello, world!";
 	char	dst[20] = "agua";
 	size_t	len;
+	char	dest[] = "qwerty";
+	
+	ft_strlcpy(dest, "aaa", 3);
+
+	printf("dest: %s\n", dest);
 
 	printf("Before: %s\n", dst);
 	len = ft_strlcpy(dst+4, src, sizeof(src));
