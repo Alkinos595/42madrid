@@ -13,7 +13,24 @@
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
+#include <bsd/string.h>
+#include <unistd.h>
 
+int	main(void)
+{
+	char	dst[8] = "Hello";
+	char	*src;
+	size_t	size;
+	size_t	result;
+
+	*src = "_world!";
+	size = sizeof(dst);
+	result = ft_strlcat(dst, src, size);
+	printf("Resulting string: %s\n", dst);
+	printf("Length of concatenated string: %zu\n", result);
+	return (0);
+}
+/*
 int	main(void)
 {
 	char	src[] = "Hello, world!";
@@ -30,7 +47,7 @@ int	main(void)
 	printf("Length: %zu\nAfter: %s\n", len, dst);
 	return (0);
 }
-
+*/
 //& memcpy & memmove test---------------------------------------
 /*
 int	main(void)
