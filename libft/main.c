@@ -18,6 +18,32 @@
 
 int	main(void)
 {
+	const char	*src = "agucacate";
+	int			chr = 'c';
+	char		*result = ft_strrchr(src, chr);
+
+	printf("result = %s\n", result);
+	return (0);
+}
+
+//&TEST toupper and tolower
+/*
+int main(void)
+{
+	int x = 97;
+	int y = 65;
+	printf("char1: %c\n", x);
+	printf("char2: %c\n",ft_toupper(x));
+	printf("--------------------\n");
+	printf("char1: %c\n", y);
+	printf("char2: %c\n",ft_tolower(y));
+	return(0);
+}
+*/
+//&Test strlcat---------------------------------------
+/*
+int	main(void)
+{
 	char	dst[8] = "Hello";
 	char	*src;
 	size_t	size;
@@ -30,6 +56,7 @@ int	main(void)
 	printf("Length of concatenated string: %zu\n", result);
 	return (0);
 }
+*/
 /*
 int	main(void)
 {
