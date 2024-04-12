@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afoinqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 22:00:56 by afoinqui          #+#    #+#             */
-/*   Updated: 2024/04/11 22:00:57 by afoinqui         ###   ########.fr       */
+/*   Created: 2024/04/12 14:08:56 by afoinqui          #+#    #+#             */
+/*   Updated: 2024/04/12 14:08:58 by afoinqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*ptr;
-	char	chr;
-	int		i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	i = 0;
-	chr = (char)c;
-	ptr = (char *)s;
-	while (ptr[i])
-		i++;
-	while (i >= 0)
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (*ptr1 && *ptr2 && *ptr1 == *ptr2 && n > 1)
 	{
-		if (ptr[i] == chr)
-			return (ptr + i);
-		i--;
+		ptr1++;
+		ptr2++;
+		n--;
 	}
-	return (NULL);
+	return (*ptr1 - *ptr2);
 }

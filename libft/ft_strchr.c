@@ -17,15 +17,13 @@ char	*ft_strchr(const char *s, int c)
 	char	*ptr;
 	char	chr;
 
-	chr = (char)c;
-	while (*s != chr)
-	{
-		if (*s == '\0')
-		{
-			return (NULL);
-		}
-		s++;
-	}
 	ptr = (char *)s;
+	chr = (char)c;
+	while (*ptr != chr)
+	{
+		if (*ptr == '\0')
+			return (NULL);
+		ptr++;
+	}
 	return (ptr);
 }

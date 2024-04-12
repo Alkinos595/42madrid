@@ -13,19 +13,52 @@
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
-#include <bsd/string.h>
 #include <unistd.h>
 
+//&Test memchr----------------------------------------------------------
+
+//&TEST strncmp
+/*
+int main(void)
+{
+	char dest1[20] = "AguxCate";
+	char dest2[20] = "aguacate";
+	unsigned int i = sizeof(dest1);
+	//-----------------------------------------------------------
+	int result1 = strncmp(dest1, dest2, i);
+	printf("result1: %d\n",result1);
+	if (result1 == 0)
+		printf("\"%s\" is identical to \"%s\"\n", dest1, dest2);
+	else if (result1 < 0)
+		printf("\"%s\" is less than \"%s\"\n", dest1, dest2);
+	else
+		printf("\"%s\" is greater than \"%s\"\n", dest1, dest2);
+	//-----------------------------------------------------------
+	int result2 = ft_strncmp(dest1, dest2, i);
+	printf("result2: %d\n",result2);
+	if (result2 == 0)
+		printf("\"%s\" is identical to \"%s\"\n", dest1, dest2);
+	else if (result2 < 0)
+		printf("\"%s\" is less than \"%s\"\n", dest1, dest2);
+	else
+		printf("\"%s\" is greater than \"%s\"\n", dest1, dest2);
+}
+*/
+//&TEST strchr and strrchr----------------------------------------
+/*
 int	main(void)
 {
-	const char	*src = "agucacate";
-	int			chr = 'c';
-	char		*result = ft_strrchr(src, chr);
+	int			chr;
+	const char	*src;
+	char		*result;
 
+	src = "agucacate";
+	chr = 'c';
+	result = ft_strchr(src, chr);
 	printf("result = %s\n", result);
 	return (0);
 }
-
+*/
 //&TEST toupper and tolower
 /*
 int main(void)
