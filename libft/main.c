@@ -13,10 +13,79 @@
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
+#include <bsd/string.h>
 #include <unistd.h>
 
-//&Test memchr----------------------------------------------------------
+//&TEST strnstr-------------------------------------------------------
+/*
+int	main(void)
+{
+	char	text[] = "Hello, world! Test string";
+	char	word[] = "world";
+	size_t	len = sizeof(text);
+	char	*result = ft_strnstr(text, word, len);
 
+	if (result != NULL)
+	{
+		printf("Str1 encontrado en pos %zu: %s\n", result - text, result);
+	}
+	else
+	{
+		printf("Str1 no encontrado.\n");
+	}
+	return (0);
+}
+*/
+//&TEST memcmp-------------------------------------------------------
+/*
+int main(void)
+{
+	char dest1[20] = "aguxCate";
+	char dest2[20] = "aguacate";
+	size_t size = 20;
+	//-----------------------------------------------------------
+	printf("Original function\n");
+	int result1 = memcmp(dest1, dest2, size);
+	printf("result1: %d\n",result1);
+	if (result1 == 0)
+		printf("\"%s\" is identical to \"%s\"\n", dest1, dest2);
+	else if (result1 < 0)
+		printf("\"%s\" is less than \"%s\"\n", dest1, dest2);
+	else
+		printf("\"%s\" is greater than \"%s\"\n", dest1, dest2);
+	printf("--------------------------------------------------\n");
+	//-----------------------------------------------------------
+	printf("My function\n");
+	int result2 = ft_memcmp(dest1, dest2, size);
+	printf("result2: %d\n",result2);
+	if (result2 == 0)
+		printf("\"%s\" is identical to \"%s\"\n", dest1, dest2);
+	else if (result2 < 0)
+		printf("\"%s\" is less than \"%s\"\n", dest1, dest2);
+	else
+		printf("\"%s\" is greater than \"%s\"\n", dest1, dest2);
+	return (0);
+}
+*/
+//&Test memchr----------------------------------------------------------
+/*
+int main(void)
+{
+	char ptm[] = "aguacaxte_power";
+	size_t x = sizeof(ptm) - 1;
+	printf("x: %zu\n",x);
+    char *result = NULL;
+    char target = 120;
+	result = ft_memchr(ptm, target, x);
+
+    if (result != NULL) {
+        printf("Encontrado '%c' en la posición %zu\n", target, result - ptm);
+    } else {
+        printf("El caracter '%c' no fue encontrado en el punter0\n", target);
+    }
+	return(0);
+}
+*/
 //&TEST strncmp
 /*
 int main(void)
