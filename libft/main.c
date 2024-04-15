@@ -13,8 +13,26 @@
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
-#include <bsd/string.h>
 #include <unistd.h>
+
+int main()
+{
+	char str[] = " --987654321";
+	/*
+	f check
+	n check
+	r check
+	t check
+	v check
+	space check
+	*/
+	printf("String: \"%s\"\n", str);
+	int convertion = atoi(str);
+	int convertion2 = ft_atoi(str);
+	printf("Convert: %d\n", convertion);
+	printf("Convert: %d\n", convertion2);
+	return 0;
+}
 
 //&TEST strnstr-------------------------------------------------------
 /*
@@ -74,15 +92,15 @@ int main(void)
 	char ptm[] = "aguacaxte_power";
 	size_t x = sizeof(ptm) - 1;
 	printf("x: %zu\n",x);
-    char *result = NULL;
-    char target = 120;
+	char *result = NULL;
+	char target = 120;
 	result = ft_memchr(ptm, target, x);
 
-    if (result != NULL) {
-        printf("Encontrado '%c' en la posición %zu\n", target, result - ptm);
-    } else {
-        printf("El caracter '%c' no fue encontrado en el punter0\n", target);
-    }
+	if (result != NULL) {
+		printf("Encontrado '%c' en la posición %zu\n", target, result - ptm);
+	} else {
+		printf("El caracter '%c' no fue encontrado en el punter0\n", target);
+	}
 	return(0);
 }
 */
@@ -166,7 +184,7 @@ int	main(void)
 	char	dst[20] = "agua";
 	size_t	len;
 	char	dest[] = "qwerty";
-	
+
 	ft_strlcpy(dest, "aaa", 3);
 
 	printf("dest: %s\n", dest);
@@ -198,7 +216,7 @@ int	main(void)
 	char 	*dest3;
 	int		numbers[] = {1, 2, 3, 4, 5};
 	int		dest2[5] = {0, 9, 8, 7, 6};
-	
+
 	printf("Tamaño de string: %ld bytes", sizeof(string));
 	printf("\ndest1 antes: ");
 	while (i < sizeof(dest1) / sizeof(dest1[0]))
@@ -214,7 +232,7 @@ int	main(void)
 		printf("%c", dest1[i]);
 		i++;
 	}
-	
+
 	i = 0;
 	printf("\nTamaño de numbers: %ld bytes", sizeof(numbers));
 	printf("\ndest2 antes: ");
