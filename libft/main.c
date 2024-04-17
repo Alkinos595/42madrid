@@ -15,25 +15,19 @@
 #include <string.h>
 #include <unistd.h>
 
+//
+/*
 int main()
 {
-	char str[] = " --987654321";
-	/*
-	f check
-	n check
-	r check
-	t check
-	v check
-	space check
-	*/
-	printf("String: \"%s\"\n", str);
+	char str[] = "-987654321";
+	printf("TheString: \"%s\"\n", str);
 	int convertion = atoi(str);
 	int convertion2 = ft_atoi(str);
-	printf("Convert: %d\n", convertion);
-	printf("Convert: %d\n", convertion2);
+	printf("SysConvert: %d\n", convertion);
+	printf("_MyConvert: %d\n", convertion2);
 	return 0;
 }
-
+*/
 //&TEST strnstr-------------------------------------------------------
 /*
 int	main(void)
