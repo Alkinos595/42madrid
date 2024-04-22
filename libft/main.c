@@ -18,6 +18,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//&TEST strdup----------------------------------------------------------------
+/*
+int main(void) {
+    const char *original = "Hello, world!";
+    char *duplicado;
+
+    duplicado = ft_strdup(original);
+    
+    printf("Dirección de la cadena original: %p\n", original);
+	printf("Valor de la cadena original: %s\n", original);
+    printf("Dirección del duplicado: %p\n", duplicado);
+	printf("Valor del duplicado: %s\n", duplicado);
+
+    free(duplicado);
+	printf("Valor del duplicado al liberar la memoria: %s\n", duplicado);
+    
+    return (0);
+}
+*/
 //&TEST calloc----------------------------------------------------------------
 /*
 int main() 
