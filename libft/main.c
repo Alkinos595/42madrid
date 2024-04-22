@@ -15,7 +15,39 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
+//&TEST calloc----------------------------------------------------------------
+/*
+int main() 
+{
+	int i;
+    int *arr = NULL;
+	arr = (int *)calloc(5, sizeof(int));
+    if (arr == NULL)
+	{
+        printf("La asignación de memoria falló.\n");
+        return 1;
+    }
+	i = 1;
+    while (i <= 5)
+	{
+        arr[i] = i;
+		i++;
+    }
+    printf("El arreglo asignado es: ");
+	i = 1;
+    while (i <= 5)
+	{
+        printf("%d ", arr[i]);
+		i++;
+    }
+    printf("\n");    
+    free(arr);
+    return 0;
+}
+*/
 //&TEST atoi------------------------------------------------------------------
 /*
 int main()
