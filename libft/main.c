@@ -15,9 +15,23 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
 
+//&TEST strjoin---------------------------------------------------------------
+/*
+int	main(void)
+{
+	char	*s1 = "Hello";
+	char	*s2 = " world!";
+	char	*result = ft_strjoin(s1, s2);
+
+	if (result)
+		printf("Cadena concatenada: %s\n", result);
+	else
+		printf("Error al concatenar las cadenas.\n");
+	free (result);
+	return (0);
+}
+*/
 //&TEST substr----------------------------------------------------------------
 /*
 int main(void) {
