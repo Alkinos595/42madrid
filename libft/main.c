@@ -18,6 +18,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//&TEST substr----------------------------------------------------------------
+/*
+int main(void) {
+    const char *str = "Hello, world!";
+    unsigned int start = 7;
+    size_t len = 3;
+
+    char *sub = ft_substr(str, start, len);
+    if (sub == NULL) {
+        printf("Error: No se pudo crear la subcadena.\n");
+        return 1;
+    }
+
+    printf("Subcadena: %s\n", sub);
+
+    free(sub); // ¡No te olvides de liberar la memoria!
+
+    return 0;
+}
+*/
 //&TEST strdup----------------------------------------------------------------
 /*
 int main(void) {
