@@ -16,6 +16,29 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST strtrim---------------------------------------------------------------
+/*
+int main(void)
+{
+    char *str = "  \n\t\n\t\n\t Hello, world! \n\t\n\t\n\t  ";
+    char *set = " \n\t";
+    char *trim = ft_strtrim(str, set);
+
+    if (trim)
+    {
+        printf("Original: \"%s\"\n", str);
+        printf("Caracteres a eliminar: \"%s\"\n", set);
+        printf("Trim \"%s\"\n", trim);
+        free(trim);
+    }
+    else
+    {
+        printf("Error: Fallo al asignar memoria\n");
+    }
+
+    return (0);
+}
+*/
 //&TEST strjoin---------------------------------------------------------------
 /*
 int	main(void)
