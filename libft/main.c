@@ -16,6 +16,42 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST split-----------------------------------------------------------------
+/*
+int main() {
+    char **result1 = ft_split("\t\t\t\thello!\t\t\t\t", '\t');
+	char **result2 = ft_split("xxxxxxxxhexxxllo!", 'x');
+	char **result3 = ft_split("hellzzzzzo!!!zzzzzzzz", 'z');
+	char **result4 = ft_split("\t\t\t\thello!\t\t\t Kitty!\t\t\t", '\t');
+	char **result5 = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
+    int i = 0;
+    while (result1[i] != NULL) {
+        printf("%d-A: %s\n",i+1 ,result1[i]);
+        i++;
+    }
+	i = 0;
+    while (result2[i] != NULL) {
+        printf("%d-B: %s\n",i+1 ,result2[i]);
+        i++;
+    }
+	i = 0;
+    while (result3[i] != NULL) {
+        printf("%d-C: %s\n",i+1 ,result3[i]);
+        i++;
+    }
+	i = 0;
+    while (result4[i] != NULL) {
+        printf("%d-D: %s\n",i+1 ,result4[i]);
+        i++;
+    }
+	i = 0;
+    while (result5[i] != NULL) {
+        printf("%d-E: %s\n",i+1 ,result5[i]);
+        i++;
+    }
+    return (0);
+}
+*/
 //&TEST strtrim---------------------------------------------------------------
 /*
 int main(void)
