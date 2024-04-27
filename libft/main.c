@@ -16,6 +16,21 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST itoa------------------------------------------------------------------
+/*
+int main(void) {
+    int num = 1123412345;
+    char *str_num = ft_itoa(num);
+    if (str_num == NULL) {
+        printf("Error: No se pudo convertir el número en una cadena.\n");
+        return 1;
+    }
+    printf("__Número original:  %d\n", num);
+    printf("Cadena resultante: \"%s\" \n", str_num);
+    free(str_num);
+    return (0);
+}
+*/
 //&TEST split-----------------------------------------------------------------
 /*
 int main() {
