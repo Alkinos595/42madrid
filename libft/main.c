@@ -16,6 +16,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST putchar_fd------------------------------------------------------------
+/*
+int main(void)
+{
+	char c = 'A';
+	ft_putchar_fd(c, 1);
+	return (0);
+}
+*/
 //&TEST striteri--------------------------------------------------------------
 /*
 static void ft_encrypt(unsigned int i, char *s)
@@ -71,75 +80,75 @@ int	main(void)
 //&TEST itoa------------------------------------------------------------------
 /*
 int main(void) {
-    int num = 1123412345;
-    char *str_num = ft_itoa(num);
-    if (str_num == NULL) {
-        printf("Error: No se pudo convertir el número en una cadena.\n");
-        return 1;
-    }
-    printf("__Número original:  %d\n", num);
-    printf("Cadena resultante: \"%s\" \n", str_num);
-    free(str_num);
-    return (0);
+	int num = 1123412345;
+	char *str_num = ft_itoa(num);
+	if (str_num == NULL) {
+		printf("Error: No se pudo convertir el número en una cadena.\n");
+		return 1;
+	}
+	printf("__Número original:  %d\n", num);
+	printf("Cadena resultante: \"%s\" \n", str_num);
+	free(str_num);
+	return (0);
 }
 */
 //&TEST split-----------------------------------------------------------------
 /*
 int main() {
-    char **result1 = ft_split("\t\t\t\thello!\t\t\t\t", '\t');
+	char **result1 = ft_split("\t\t\t\thello!\t\t\t\t", '\t');
 	char **result2 = ft_split("xxxxxxxxhexxxllo!", 'x');
 	char **result3 = ft_split("hellzzzzzo!!!zzzzzzzz", 'z');
 	char **result4 = ft_split("\t\t\t\thello!\t\t\t Kitty!\t\t\t", '\t');
 	char **result5 = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
-    int i = 0;
-    while (result1[i] != NULL) {
-        printf("%d-A: %s\n",i+1 ,result1[i]);
-        i++;
-    }
+	int i = 0;
+	while (result1[i] != NULL) {
+		printf("%d-A: %s\n",i+1 ,result1[i]);
+		i++;
+	}
 	i = 0;
-    while (result2[i] != NULL) {
-        printf("%d-B: %s\n",i+1 ,result2[i]);
-        i++;
-    }
+	while (result2[i] != NULL) {
+		printf("%d-B: %s\n",i+1 ,result2[i]);
+		i++;
+	}
 	i = 0;
-    while (result3[i] != NULL) {
-        printf("%d-C: %s\n",i+1 ,result3[i]);
-        i++;
-    }
+	while (result3[i] != NULL) {
+		printf("%d-C: %s\n",i+1 ,result3[i]);
+		i++;
+	}
 	i = 0;
-    while (result4[i] != NULL) {
-        printf("%d-D: %s\n",i+1 ,result4[i]);
-        i++;
-    }
+	while (result4[i] != NULL) {
+		printf("%d-D: %s\n",i+1 ,result4[i]);
+		i++;
+	}
 	i = 0;
-    while (result5[i] != NULL) {
-        printf("%d-E: %s\n",i+1 ,result5[i]);
-        i++;
-    }
-    return (0);
+	while (result5[i] != NULL) {
+		printf("%d-E: %s\n",i+1 ,result5[i]);
+		i++;
+	}
+	return (0);
 }
 */
 //&TEST strtrim---------------------------------------------------------------
 /*
 int main(void)
 {
-    char *str = "  \n\t\n\t\n\t Hello, world! \n\t\n\t\n\t  ";
-    char *set = " \n\t";
-    char *trim = ft_strtrim(str, set);
+	char *str = "  \n\t\n\t\n\t Hello, world! \n\t\n\t\n\t  ";
+	char *set = " \n\t";
+	char *trim = ft_strtrim(str, set);
 
-    if (trim)
-    {
-        printf("Original: \"%s\"\n", str);
-        printf("Caracteres a eliminar: \"%s\"\n", set);
-        printf("Trim \"%s\"\n", trim);
-        free(trim);
-    }
-    else
-    {
-        printf("Error: Fallo al asignar memoria\n");
-    }
+	if (trim)
+	{
+		printf("Original: \"%s\"\n", str);
+		printf("Caracteres a eliminar: \"%s\"\n", set);
+		printf("Trim \"%s\"\n", trim);
+		free(trim);
+	}
+	else
+	{
+		printf("Error: Fallo al asignar memoria\n");
+	}
 
-    return (0);
+	return (0);
 }
 */
 //&TEST strjoin---------------------------------------------------------------
@@ -161,70 +170,70 @@ int	main(void)
 //&TEST substr----------------------------------------------------------------
 /*
 int main(void) {
-    const char *str = "Hello, world!";
-    unsigned int start = 7;
-    size_t len = 3;
+	const char *str = "Hello, world!";
+	unsigned int start = 7;
+	size_t len = 3;
 
-    char *sub = ft_substr(str, start, len);
-    if (sub == NULL) {
-        printf("Error: No se pudo crear la subcadena.\n");
-        return 1;
-    }
+	char *sub = ft_substr(str, start, len);
+	if (sub == NULL) {
+		printf("Error: No se pudo crear la subcadena.\n");
+		return 1;
+	}
 
-    printf("Subcadena: %s\n", sub);
+	printf("Subcadena: %s\n", sub);
 
-    free(sub); // ¡No te olvides de liberar la memoria!
+	free(sub); // ¡No te olvides de liberar la memoria!
 
-    return 0;
+	return 0;
 }
 */
 //&TEST strdup----------------------------------------------------------------
 /*
 int main(void) {
-    const char *original = "Hello, world!";
-    char *duplicado;
+	const char *original = "Hello, world!";
+	char *duplicado;
 
-    duplicado = ft_strdup(original);
-    
-    printf("Dirección de la cadena original: %p\n", original);
+	duplicado = ft_strdup(original);
+
+	printf("Dirección de la cadena original: %p\n", original);
 	printf("Valor de la cadena original: %s\n", original);
-    printf("Dirección del duplicado: %p\n", duplicado);
+	printf("Dirección del duplicado: %p\n", duplicado);
 	printf("Valor del duplicado: %s\n", duplicado);
 
-    free(duplicado);
+	free(duplicado);
 	printf("Valor del duplicado al liberar la memoria: %s\n", duplicado);
-    
-    return (0);
+
+	return (0);
 }
 */
 //&TEST calloc----------------------------------------------------------------
 /*
-int main() 
+int main()
 {
 	int i;
-    int *arr = NULL;
+	int *arr = NULL;
 	arr = (int *)calloc(5, sizeof(int));
-    if (arr == NULL)
+	if (arr == NULL)
 	{
-        printf("La asignación de memoria falló.\n");
-        return 1;
-    }
+		printf("La asignación de memoria falló.\n");
+		return 1;
+	}
 	i = 1;
-    while (i <= 5)
+	while (i <= 5)
 	{
-        arr[i] = i;
+		arr[i] = i;
 		i++;
-    }
-    printf("El arreglo asignado es: ");
+	}
+	printf("El arreglo asignado es: ");
 	i = 1;
-    while (i <= 5)
+	while (i <= 5)
 	{
-        printf("%d ", arr[i]);
+		printf("%d ", arr[i]);
 		i++;
-    }
-    printf("\n");    
-    free(arr);
-    return 0;
+	}
+	printf("\n");
+	free(arr);
+	return 0;
 }
 */
 //&TEST atoi------------------------------------------------------------------
