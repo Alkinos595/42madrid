@@ -16,12 +16,22 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST putendl_fd------------------------------------------------------------
+/*
+int main(void)
+{
+	char *c = "Hola Mundo";
+	ft_putendl_fd(c, 1);
+	write(1, c, ft_strlen(c));
+	write(1, "\n", 1);
+	return (0);
+}
+*/
 //&TEST putstr_fd-------------------------------------------------------------
 /*
 int main(void)
 {
 	char *c = "Hola Mundo\n";
-	ft_strlen(c);
 	ft_putstr_fd(c, 1);
 	write(1, c, ft_strlen(c));
 	return (0);
