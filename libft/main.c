@@ -15,7 +15,15 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-
+//&TEST ft_putnbr_fd----------------------------------------------------------
+/*
+int main(void)
+{
+	int n = -2147483648;
+	ft_putnbr_fd(n, 1);
+	return (0);
+}
+*/
 //&TEST putendl_fd------------------------------------------------------------
 /*
 int main(void)
