@@ -16,6 +16,33 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST striteri--------------------------------------------------------------
+/*
+static void ft_encrypt(unsigned int i, char *s)
+{
+	*s += i;
+}
+static void ft_decrypt(unsigned int i, char *s)
+{
+	*s -= i;
+}
+
+int	main(void)
+{
+	char	s[] = "Santiago Nasar se levantó a las 5:30am";
+	char *ptr = malloc(sizeof(char) * strlen(s) + 1);
+	int i = -1;
+	while(s[++i])
+		ptr[i] = s[i];
+	ptr[i] = '\0';
+	printf("String source: %s\n", ptr);
+	ft_striteri(ptr, (*ft_encrypt));
+	printf("String result: %s\n", ptr);
+	ft_striteri(ptr, (*ft_decrypt));
+	printf("String result: %s\n", ptr);
+	return (0);
+}
+*/
 //&TEST strmapi---------------------------------------------------------------
 /*
 static char	ft_encrypt_char(unsigned int i, char c)
