@@ -16,6 +16,31 @@
 #include <string.h>
 #include <stdlib.h>
 
+//&TEST strmapi---------------------------------------------------------------
+/*
+static char	ft_encrypt_char(unsigned int i, char c)
+{
+	return (c += i);
+}
+
+static char	ft_decrypt_char(unsigned int i, char c)
+{
+	return (c -= i);
+}
+
+int	main(void)
+{
+	char	*s;
+
+	s = "El día en que lo iban a matar, Santiago Nasar se levantó a las 5:30am";
+	printf("\nString source: %s\n\n", s);
+	s = ft_strmapi(s, (*ft_encrypt_char));
+	printf("String result: %s\n", s);
+	s = ft_strmapi(s, (*ft_decrypt_char));
+	printf("String result: %s\n\n", s);
+	return (0);
+}
+*/
 //&TEST itoa------------------------------------------------------------------
 /*
 int main(void) {
