@@ -19,27 +19,26 @@ int	main(void)
 	int		fd;
 	char	*line;
 	int		i;
-	printf("\nBUFFER_SIZE: %d\n\n", BUFFER_SIZE);
 
 	fd = open("textfile", O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error al abrir el archivo");
-		return (1);
+		printf("Error al abrir el archivo");
+		return (0);
 	}
 	i = 1;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		printf("Linea %d: %s\n", i, line);
+		printf("BUFFER_SIZE: %d\n Linea %d: %s\n", BUFFER_SIZE, i, line);
 		free(line);
-		i++;
 		line = get_next_line(fd);
+		i++;
 	}
 	if (close(fd) == -1)
 	{
-		perror("Error al cerrar el archivo");
-		return (1);
+		printf("Error al cerrar el archivo");
+		return (0);
 	}
 	return (0);
 }
