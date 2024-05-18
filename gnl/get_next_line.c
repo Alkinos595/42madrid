@@ -6,49 +6,39 @@
 /*   By: afoinqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:15:30 by afoinqui          #+#    #+#             */
-/*   Updated: 2024/05/08 20:48:26 by afoinqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:38:13 by afoinqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 
-
 char	*get_next_line(int fd)
 {
-	int		b_read;
-	char	*line;
+	static char	*storage;
+	char		*read_buffer;
+	int			sizeof_read;
 
+	sizeof_read = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!line)
+	read_buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!read_buffer)
 		return (NULL);
-	b_read = read(fd, line, BUFFER_SIZE);
-	if (!b_read)
-		return (NULL);
-	return (line);
+	while (ft_strchr(storage, '\n') == NULL && sizeof_read > 0)
+	{
+		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
+		if (sizeof_read == -1)
+		{
+			storage = free_and_null(read_buffer, storage);
+			return (NULL);
+		}
+		read_buffer[sizeof_read] = '\0';
+		storage = ft_strjoin(storage, read_buffer);
+	}
+	free(read_buffer);
+	
+	read_buffer = read_line(storage);
+	storage = create_substring(storage);
+	return (read_buffer);
 }
-
-//&---------------------------------------------------------------------------
-/*
-char	*get_next_line(int fd)
-{
-	static char	*backup;
-	char		*line;
-	char		*buf;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (0);
-	line = function_name(fd, buf, backup);
-	free(buf);
-	buf = NULL;
-	if (!line)
-		return (NULL);
-	backup = extract(line);
-	return (line);
-}
-*/
