@@ -29,7 +29,10 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 	{
 		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (sizeof_read == -1)
+		{
+			storage = free_null(storage);
 			return (NULL);
+		}
 		if (sizeof_read == 0)
 			break ;
 		read_buffer[sizeof_read] = '\0';
@@ -75,7 +78,10 @@ char	*get_next_line(int fd)
 	text_line = fill_storage(fd, read_buffer, storage);
 	read_buffer = free_null(read_buffer);
 	if (!text_line)
+	{
+		storage = NULL;
 		return (NULL);
+	}
 	storage = get_text_line(text_line);
 	return (text_line);
 }
