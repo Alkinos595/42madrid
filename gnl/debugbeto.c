@@ -3,7 +3,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 5
 # endif
 
 # include <stdlib.h>
@@ -114,6 +114,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
+char	*free_null(char *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+	return (ptr);
+}
+
 static char	*fill_storage(int fd, char *read_buffer, char *storage)
 {
 	int		sizeof_read;
@@ -126,14 +133,13 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 		if (sizeof_read == -1)
 			return (NULL);
 		if (sizeof_read == 0)
-			break;
+			break ;
 		read_buffer[sizeof_read] = '\0';
 		if (!storage)
 			storage = ft_strdup("");
 		temp_reserve = storage;
 		storage = ft_strjoin(temp_reserve, read_buffer);
-		free(temp_reserve);
-		temp_reserve = NULL;
+		temp_reserve = free_null(temp_reserve);
 		if (ft_strchr (read_buffer, '\n'))
 			break ;
 	}
@@ -142,21 +148,18 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 
 static char	*get_text_line(char *text_line)
 {
-	size_t	count;
+	size_t	i;
 	char	*storage;
 
-	count = 0;
-	while (text_line[count] != '\n' && text_line[count] != '\0')
-		count++;
-	if (text_line[count] == '\0' || text_line[1] == '\0')
+	i = 0;
+	while (text_line[i] != '\n' && text_line[i] != '\0')
+		i++;
+	if (text_line[i] == '\0')
 		return (NULL);
-	storage = ft_substr(text_line, count + 1, ft_strlen(text_line) - count);
+	storage = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
 	if (*storage == '\0')
-	{
-		free(storage);
-		storage = NULL;
-	}
-	text_line[count + 1] = '\0';
+		storage = free_null(storage);
+	text_line[i + 1] = '\0';
 	return (storage);
 }
 
@@ -166,14 +169,13 @@ char	*get_next_line(int fd)
 	char		*text_line;
 	char		*read_buffer;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
 		return (NULL);
 	read_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
 		return (NULL);
 	text_line = fill_storage(fd, read_buffer, storage);
-	free(read_buffer);
-	read_buffer = NULL;
+	read_buffer = free_null(read_buffer);
 	if (!text_line)
 		return (NULL);
 	storage = get_text_line(text_line);
@@ -186,19 +188,19 @@ int	main(void)
 	char	*line;
 	int		i;
 
-	fd = open("file1.txt", O_RDONLY);
+	fd = open("textfile", O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error al abrir el archivo");
 		return (0);
 	}
 	i = 1;
-	line = get_next_line(fd);
+	line = "";
  	while (line != NULL)
 	{
+		line = get_next_line(fd);
 		printf("BUFFER_SIZE: %d\n Linea %d: %s\n", BUFFER_SIZE, i, line);
 		free(line);
-		line = get_next_line(fd);
 		i++;
 	}
 	if (close(fd) == -1)

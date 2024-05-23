@@ -19,7 +19,9 @@ int	main(void)
 	int		fd;
 	char	*line;
 	int		i;
+	int		limit;
 
+	limit = 4;
 	fd = open("textfile", O_RDONLY);
 	if (fd == -1)
 	{
@@ -28,7 +30,7 @@ int	main(void)
 	}
 	i = 1;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (i <= limit)
 	{
 		printf("BUFFER_SIZE: %d\n Linea %d: %s\n", BUFFER_SIZE, i, line);
 		free(line);
