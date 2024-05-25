@@ -25,7 +25,7 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 	char	*temp_reserve;
 
 	sizeof_read = 1;
-	while (sizeof_read > 0)
+	while (sizeof_read > 0  && ft_strchr (storage, '\n') == NULL)
 	{
 		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (sizeof_read == -1)
@@ -41,23 +41,23 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 		temp_reserve = storage;
 		storage = ft_strjoin(temp_reserve, read_buffer);
 		temp_reserve = free_null(temp_reserve);
-		if (ft_strchr (read_buffer, '\n'))
-			break ;
 	}
 	return (storage);
 }
 
-static char	*get_text_line(char *text_line)
+char	*get_text_line(char *text_line, int *ptr)
 {
 	size_t	i;
 	char	*storage;
-
+	(void)ptr;
 	i = 0;
 	while (text_line[i] != '\n' && text_line[i] != '\0')
 		i++;
 	if (text_line[i] == '\0')
 		return (NULL);
 	storage = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
+ 	if (!storage)
+		return (*ptr = 1, NULL);
 	if (*storage == '\0')
 		storage = free_null(storage);
 	text_line[i + 1] = '\0';
@@ -82,6 +82,9 @@ char	*get_next_line(int fd)
 		storage = NULL;
 		return (NULL);
 	}
-	storage = get_text_line(text_line);
-	return (text_line);
+	int ptr = 0;
+ 	storage = get_text_line(text_line, &ptr);
+	if (ptr == 1)
+		return (storage = free_null(storage), NULL);
+ 	return (text_line);
 }

@@ -55,6 +55,8 @@ char	*ft_strchr(const char *s, int c)
 	char	*ptr;
 	char	chr;
 
+	if (!s)
+		return (NULL);
 	ptr = (char *)s;
 	chr = (char)c;
 	while (*ptr != chr)
