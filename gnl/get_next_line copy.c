@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*free_null(char *ptr)
+char	*free_null(char *ptr)
 {
 	free(ptr);
 	ptr = NULL;
@@ -21,56 +21,48 @@ static char	*free_null(char *ptr)
 
 static char	*fill_storage(int fd, char *read_buffer, char *storage)
 {
-	char	*text_read;
 	int		sizeof_read;
 	char	*temp_reserve;
 
 	sizeof_read = 1;
-	text_read = storage;
-	while (sizeof_read > 0 && ft_strchr (text_read, '\n') == NULL)
+	while (sizeof_read > 0 && ft_strchr (storage, '\n') == NULL)
 	{
 		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (sizeof_read == -1)
-			return (text_read = free_null(text_read));
+		{
+			storage = free_null(storage);
+			return (NULL);
+		}
 		if (sizeof_read == 0)
 			break ;
 		read_buffer[sizeof_read] = '\0';
-		if (!text_read)
-			text_read = ft_strdup("");
-		temp_reserve = text_read;
-		text_read = ft_strjoin(temp_reserve, read_buffer);
+		if (!storage)
+			storage = ft_strdup("");
+		temp_reserve = storage;
+		storage = ft_strjoin(temp_reserve, read_buffer);
 		temp_reserve = free_null(temp_reserve);
 	}
-	return (text_read);
+	return (storage);
 }
 
-static char	*get_text_line(char *str)
+char	*get_text_line(char *text_line, int *ptr)
 {
-	int	i;
+	size_t	i;
+	char	*storage;
 
+	(void)ptr;
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (text_line[i] != '\n' && text_line[i] != '\0')
 		i++;
-	if (str[i] == '\n')
-		i++;
-	return (ft_substr(str, 0, i));
-}
-
-static char	*clean_storage(char *str)
-{
-	int		i;
-	char	*new_storage;
-
-	i = 0;
-	if (!str || *str == '\0')
-		return (free_null(str));
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	new_storage = ft_substr(str, i, ft_strlen(str) - i);
-	str = free_null(str);
-	return (new_storage);
+	if (text_line[i] == '\0')
+		return (NULL);
+	storage = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
+	if (!storage)
+		return (*ptr = 1, NULL);
+	if (*storage == '\0')
+		storage = free_null(storage);
+	text_line[i + 1] = '\0';
+	return (storage);
 }
 
 char	*get_next_line(int fd)
@@ -78,20 +70,23 @@ char	*get_next_line(int fd)
 	static char	*storage;
 	char		*text_line;
 	char		*read_buffer;
+	int			ptr;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
 		return (NULL);
 	read_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
 		return (NULL);
-	if (storage == NULL || ft_strchr (storage, '\n') == NULL)
-		storage = fill_storage(fd, read_buffer, storage);
+	text_line = fill_storage(fd, read_buffer, storage);
 	read_buffer = free_null(read_buffer);
-	if (!storage)
-		return (storage = free_null(storage));
-	text_line = get_text_line(storage);
-	if (text_line == NULL)
+	if (!text_line)
+	{
+		storage = NULL;
 		return (NULL);
-	storage = clean_storage(storage);
+	}
+	ptr = 0;
+	storage = get_text_line(text_line, &ptr);
+	if (ptr == 1)
+		return (storage = free_null(storage), NULL);
 	return (text_line);
 }

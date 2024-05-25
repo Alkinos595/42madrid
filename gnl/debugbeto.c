@@ -1,9 +1,9 @@
-/*
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1000000
 # endif
 
 # include <stdlib.h>
@@ -26,6 +26,8 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
+	if(str == NULL)
+		return(0);
 	while (str[i] != '\0')
 		i++;
 	return (i);
@@ -62,6 +64,8 @@ char	*ft_strchr(const char *s, int c)
 	char	*ptr;
 	char	chr;
 
+	if (!s)
+		return (NULL);
 	ptr = (char *)s;
 	chr = (char)c;
 	while (*ptr != chr)
@@ -114,53 +118,68 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-char	*free_null(char *ptr)
+static char	*free_null(char *ptr)
 {
 	free(ptr);
 	ptr = NULL;
 	return (ptr);
 }
 
-static char	*fill_storage(int fd, char *read_buffer, char *storage)
+static char	*fill_storage(int fd, char *read_buffer)
 {
+	char*	text_read;
 	int		sizeof_read;
-	char	*temp_reserve;
+	char*	temp_reserve;
 
 	sizeof_read = 1;
-	while (sizeof_read > 0)
+	while (sizeof_read > 0 && ft_strchr (text_read, '\n') == NULL)
 	{
 		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (sizeof_read == -1)
-			return (NULL);
+			return (text_read = free_null(text_read));
 		if (sizeof_read == 0)
+		{
+			text_read = ft_strdup("");
 			break ;
+		}
 		read_buffer[sizeof_read] = '\0';
-		if (!storage)
-			storage = ft_strdup("");
-		temp_reserve = storage;
-		storage = ft_strjoin(temp_reserve, read_buffer);
+		if (!text_read)
+			text_read = ft_strdup("");
+		temp_reserve = text_read;
+		text_read = ft_strjoin(temp_reserve, read_buffer);
 		temp_reserve = free_null(temp_reserve);
-		if (ft_strchr (read_buffer, '\n'))
-			break ;
 	}
-	return (storage);
+	return (text_read);
 }
 
-static char	*get_text_line(char *text_line)
+static char	*get_text_line(char* str)
 {
-	size_t	i;
-	char	*storage;
+	int	i;
 
 	i = 0;
-	while (text_line[i] != '\n' && text_line[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
-	if (text_line[i] == '\0')
-		return (NULL);
-	storage = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
-	if (*storage == '\0')
-		storage = free_null(storage);
-	text_line[i + 1] = '\0';
-	return (storage);
+	if (str[i] == '\n') {
+        i++;
+    }
+    return (ft_substr(str, 0, i));
+}
+
+static char	*clean_storage(char* str)
+{
+	int		i;
+	char	*new_storage;
+
+	i = 0;
+	if (!str || *str == '\0')
+        return free_null(str);
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	new_storage = ft_substr(str, i, ft_strlen(str) - i);
+	str = free_null(str);
+	return new_storage;
 }
 
 char	*get_next_line(int fd)
@@ -174,32 +193,36 @@ char	*get_next_line(int fd)
 	read_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
 		return (NULL);
-	text_line = fill_storage(fd, read_buffer, storage);
+	storage = fill_storage(fd, read_buffer);
 	read_buffer = free_null(read_buffer);
-	if (!text_line)
+	if(!storage)
+		return (storage = free_null(storage));
+	text_line = get_text_line(storage);
+	if(text_line == NULL)
 		return (NULL);
-	storage = get_text_line(text_line);
-	return (text_line);
+	storage = clean_storage(storage);	
+ 	return (text_line);
 }
-
 int	main(void)
 {
 	int		fd;
 	char	*line;
 	int		i;
+	int		end;
 
-	fd = open("textfile", O_RDONLY);
+	fd = open("only_nl.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error al abrir el archivo");
 		return (0);
 	}
-	i = 1;
+	i = 0;
+	end = 4;
 	line = "";
- 	while (line != NULL)
+ 	while (i < end)
 	{
 		line = get_next_line(fd);
-		printf("BUFFER_SIZE: %d\n Linea %d: %s\n", BUFFER_SIZE, i, line);
+		printf("%s", line);
 		free(line);
 		i++;
 	}
@@ -210,4 +233,3 @@ int	main(void)
 	}
 	return (0);
 }
-*/
