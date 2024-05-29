@@ -1,4 +1,4 @@
-
+/*
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -233,3 +233,5 @@ int	main(void)
 	}
 	return (0);
 }
+
+*/

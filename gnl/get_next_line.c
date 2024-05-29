@@ -12,48 +12,39 @@
 
 #include "get_next_line.h"
 
-static char	*free_null(char *ptr)
+static char	*free_null(char *ptr, char *ptr2)
 {
-	free(ptr);
-	ptr = NULL;
-	return (ptr);
-}
-
-static char	*fill_storage(int fd, char *read_buffer, char *storage)
-{
-	char	*text_read;
-	int		sizeof_read;
-	char	*temp_reserve;
-
-	sizeof_read = 1;
-	text_read = storage;
-	while (sizeof_read > 0 && ft_strchr (text_read, '\n') == NULL)
+	if (ptr2 == NULL)
 	{
-		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
-		if (sizeof_read == -1)
-			return (text_read = free_null(text_read));
-		if (sizeof_read == 0)
-			break ;
-		read_buffer[sizeof_read] = '\0';
-		if (!text_read)
-			text_read = ft_strdup("");
-		temp_reserve = text_read;
-		text_read = ft_strjoin(temp_reserve, read_buffer);
-		temp_reserve = free_null(temp_reserve);
+		free(ptr);
+		ptr = NULL;
+		return (NULL);
 	}
-	return (text_read);
+	else
+	{
+		free(ptr);
+		free(ptr2);
+		ptr = NULL;
+		ptr2 = NULL;
+		return (NULL);
+	}
 }
 
-static char	*get_text_line(char *str)
+static char	*get_line(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if (str[i] == '\n')
 		i++;
-	return (ft_substr(str, 0, i));
+	str = ft_substr(str, 0, i);
+	if (!str)
+		return (NULL);
+	return (str);
 }
 
 static char	*clean_storage(char *str)
@@ -62,36 +53,43 @@ static char	*clean_storage(char *str)
 	char	*new_storage;
 
 	i = 0;
-	if (!str || *str == '\0')
-		return (free_null(str));
+	if (!str)
+		return (NULL);
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if (str[i] == '\n')
 		i++;
 	new_storage = ft_substr(str, i, ft_strlen(str) - i);
-	str = free_null(str);
+	if (!new_storage)
+		return (NULL);
+	free_null(str, NULL);
 	return (new_storage);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*storage;
-	char		*text_line;
 	char		*read_buffer;
+	int			sizeof_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
+	sizeof_read = 1;
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 2147483648)
 		return (NULL);
 	read_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
 		return (NULL);
-	if (storage == NULL || ft_strchr (storage, '\n') == NULL)
-		storage = fill_storage(fd, read_buffer, storage);
-	read_buffer = free_null(read_buffer);
-	if (!storage)
-		return (storage = free_null(storage));
-	text_line = get_text_line(storage);
-	if (text_line == NULL)
-		return (NULL);
+	while (ft_strchr (storage, '\n') == NULL)
+	{
+		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
+		if (sizeof_read <= 0)
+			break ;
+		read_buffer[sizeof_read] = '\0';
+		storage = ft_strjoin(storage, read_buffer);
+	}
+	read_buffer = free_null(read_buffer, NULL);
+	read_buffer = get_line(storage);
 	storage = clean_storage(storage);
-	return (text_line);
+	if(!storage && !read_buffer)
+		free_null(storage, read_buffer);
+	return (read_buffer);
 }
