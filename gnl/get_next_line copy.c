@@ -48,7 +48,7 @@ static char	*fill_storage(int fd, char *read_buffer, char *storage)
 char	*get_text_line(char *text_line, int *ptr)
 {
 	size_t	i;
-	char	*storage;
+	char	*new_str;
 
 	(void)ptr;
 	i = 0;
@@ -56,13 +56,13 @@ char	*get_text_line(char *text_line, int *ptr)
 		i++;
 	if (text_line[i] == '\0')
 		return (NULL);
-	storage = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
-	if (!storage)
+	new_str = ft_substr(text_line, i + 1, ft_strlen(text_line) - i);
+	if (!new_str)
 		return (*ptr = 1, NULL);
-	if (*storage == '\0')
-		storage = free_null(storage);
+	if (*new_str == '\0')
+		new_str = free_null(new_str);
 	text_line[i + 1] = '\0';
-	return (storage);
+	return (new_str);
 }
 
 char	*get_next_line(int fd)

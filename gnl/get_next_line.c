@@ -30,8 +30,35 @@ static char	*free_null(char *ptr, char *ptr2)
 	}
 }
 
+static char	*fill_backup(int fd, char *read_buffer, char *storage)
+{
+	int		sizeof_read;
+	char	*temp_reserve;
+
+	sizeof_read = 1;
+	while (ft_strchr (storage, '\n') == NULL)
+	{
+		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
+		if (sizeof_read == -1)
+		{
+			storage = free_null(storage, NULL);
+			return (NULL);
+		}
+		if (sizeof_read == 0)
+			break ;
+		read_buffer[sizeof_read] = '\0';
+		if (!storage)
+			storage = ft_strdup("");
+		temp_reserve = storage;
+		storage = ft_strjoin(temp_reserve, read_buffer);
+		temp_reserve = free_null(temp_reserve, NULL);
+	}
+	return (storage);
+}
+
 static char	*get_line(char *str)
 {
+	char	*new_str;
 	int		i;
 
 	i = 0;
@@ -41,16 +68,17 @@ static char	*get_line(char *str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	str = ft_substr(str, 0, i);
-	if (!str)
+	new_str = ft_substr(str, 0, i);
+	if (!new_str)
 		return (NULL);
-	return (str);
+	free_null(str, NULL);
+	return (new_str);
 }
 
 static char	*clean_storage(char *str)
 {
+	char	*new_str;
 	int		i;
-	char	*new_storage;
 
 	i = 0;
 	if (!str)
@@ -59,37 +87,34 @@ static char	*clean_storage(char *str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	new_storage = ft_substr(str, i, ft_strlen(str) - i);
-	if (!new_storage)
+	if (str[i] == '\0')
 		return (NULL);
+	new_str = ft_substr(str, i, ft_strlen(str) - i);
+	if (!new_str)
+		return (free_null(new_str, NULL));
+	if (*new_str == '\0')
+		free_null(new_str, NULL);
 	free_null(str, NULL);
-	return (new_storage);
+	return (new_str);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*storage;
+	char		*read_backup;
 	char		*read_buffer;
-	int			sizeof_read;
 
-	sizeof_read = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 2147483648)
 		return (NULL);
 	read_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
 		return (NULL);
-	while (ft_strchr (storage, '\n') == NULL)
-	{
-		sizeof_read = read(fd, read_buffer, BUFFER_SIZE);
-		if (sizeof_read <= 0)
-			break ;
-		read_buffer[sizeof_read] = '\0';
-		storage = ft_strjoin(storage, read_buffer);
-	}
-	read_buffer = free_null(read_buffer, NULL);
-	read_buffer = get_line(storage);
-	storage = clean_storage(storage);
-	if(!storage && !read_buffer)
-		free_null(storage, read_buffer);
+	read_backup = fill_backup(fd, read_buffer, storage);
+	free_null(read_buffer, NULL);
+	if(!read_backup)
+		return(free_null(storage, NULL));
+	read_buffer = get_line(ft_strdup(read_backup));
+	storage = clean_storage(ft_strdup(read_backup));
+	free_null(read_backup, NULL);
 	return (read_buffer);
 }
